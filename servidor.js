@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static(__dirname + "/public"))
 app.use('/api/productos-test',desafioFaker)
 app.use('/productos', routesProductos)
-app.set('views','./views')
+app.set('views','./src/views')
 app.set('view engine','ejs')
 
 app.get('/',(req,res) => {

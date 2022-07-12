@@ -9,12 +9,14 @@
 </head>
 <body>
 
-    <form class="formularioLog" action="/session" method="post">
-        <input type="text" name="nombreLogIn" placeholder="Ingresa tu nombre">
-        <button type="submit">Enviar</button>
-    </form>
+    <div class="">
+        <div class="">
+            <h1 class="">Bienvenid@ <%=nombre%></h1>
+        </div>
+        <button class="" onclick="location.href='/logout'">Logout</button>
+    </div>
 
-    <h1 class="title"><%= title %></h1>
+    <h2 class="title"><%= title %></h2>
     <form class="formularioAgregar" action="/productos" enctype="multipart/form-data" method="post">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" placeholder="Nombre del producto">
