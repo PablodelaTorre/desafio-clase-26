@@ -1,5 +1,7 @@
 import express from 'express'
 import { Server } from 'socket.io'
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -11,6 +13,14 @@ import multer from 'multer'
 import desafioFaker from "./desafioFaker.js"
 import routesProductos from "./src/routes/routes-productos.js"
 import routesMensajes from "./src/routes/routes-mensajes.js"
+import loginRouter from "./src/routes/login.js"
+import logoutRouter from "./src/routes/logout.js"
+import 'dotenv/config'
+
+//variables del env
+const MONGO_USER = process.env.MONGO_USER;
+const MONGO_PASS = process.env.MONGO_PASS;
+const DB_NAME = process.env.DB_NAME;
 
 const httpServer = http.createServer(app)
 const io = new Server(httpServer)
@@ -22,15 +32,36 @@ app.use(multer({
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(__dirname + "/public"))
+
+//login mongo
+
+app.use(session(
+    {
+        secret: 'secret',
+        resave: true,
+        saveUninitialized: true,
+        store: MongoStore.create({
+            mongoUrl: `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@cluster0.krjoq.mongodb.net/${DB_NAME}retryWrites=true&w=majority`,
+            ttl: 60 * 10 // 10 minutes
+            })
+    }
+));
 app.use('/api/productos-test',desafioFaker)
 app.use('/productos', routesProductos)
+app.use('/login',loginRouter)
+app.use('/logout',logoutRouter)
 app.set('views','./src/views')
 app.set('view engine','ejs')
 
 app.get('/',(req,res) => {
-    res.render('index', {
-        title:"Agregue un producto"
-    })
+    if(req.session.nombre) {
+        res.render('index', {
+            title:"Agregue un producto",
+            nombre: req.session.nombre
+        })
+    } else {
+        res.redirect("/login");
+    }
 })
 
 export const productos = []
