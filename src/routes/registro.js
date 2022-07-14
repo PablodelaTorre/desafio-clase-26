@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router();
 
-const usuarios = []
+export const usuarios = []
 
 router.get("/", (req, res) => {
     res.render("./partials/registro");
