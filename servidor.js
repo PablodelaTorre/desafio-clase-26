@@ -4,6 +4,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import path from 'path';
 import { fileURLToPath } from 'url';
+//import'./src/dataBases/database.js'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // import { ioServer } from 'socket.io'
