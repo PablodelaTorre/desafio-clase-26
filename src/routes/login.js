@@ -8,6 +8,11 @@ router.get("/", (req, res) => {
     res.render("./partials/login");
 });
 
+// router.post('/',passport.authenticate('login',{
+//     failureRedirect:'./partials/errorLogin',
+//     succesRedirect:'./partials/login',
+// }))
+
 router.post("/", (req, res) => {
     const {nombre, password} = req.body
     const usuario = usuarios.find(usuario=>usuario.nombre===nombre)
