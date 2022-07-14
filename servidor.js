@@ -15,6 +15,7 @@ import routesProductos from "./src/routes/routes-productos.js"
 import routesMensajes from "./src/routes/routes-mensajes.js"
 import loginRouter from "./src/routes/login.js"
 import logoutRouter from "./src/routes/logout.js"
+import registroRouter from "./src/routes/registro.js"
 import 'dotenv/config'
 
 //variables del env
@@ -48,6 +49,7 @@ app.use(session(
 ));
 app.use('/api/productos-test',desafioFaker)
 app.use('/productos', routesProductos)
+app.use('/registro',registroRouter)
 app.use('/login',loginRouter)
 app.use('/logout',logoutRouter)
 app.set('views','./src/views')

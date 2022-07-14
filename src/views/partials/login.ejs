@@ -14,11 +14,10 @@
         <div class="field">
             <label class="label mt-6">Nombre</label>
             <form action="/login" method="post" class="control has-icons-left has-icons-right">
-                <input class="input is-success mt-3" type="text" name="nombre" placeholder="Ingresa tu nombre" >
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
-                </span>
-                <button type="submit" class="button is-primary mt-3">Enviar</button>
+                <input class="input is-success mt-3" type="text" name="nombre" placeholder="Ingresa tu nombre de usuario" >
+                <input type="password" name="password" placeholder="Ingrese su contraseña">
+                <button type="submit" class="button is-primary mt-3">Ingresar</button>
+                <button class="" onclick="location.href='/registro'">Registrarse</button>
             </form>
             </div>
         </div>
