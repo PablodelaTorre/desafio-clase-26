@@ -1,4 +1,5 @@
 import { Router } from "express";
+//import passport from "passport";
 
 const router = Router();
 
@@ -8,7 +9,12 @@ router.get("/", (req, res) => {
     res.render("./partials/registro");
 });
 
+// router.post('/',passport.authenticate('registro',{
+//     failureRedirect:'./partials/errorRegistro',
+//     succesRedirect:'./partials/login',
+// }))
 router.post("/", (req, res) => {
+
     if (usuarios.some(usuario=>usuario.nombre===req.body.nombre)){
         return res.render("./partials/errorRegistro")
     }

@@ -28,3 +28,15 @@ passport.deserializeUser(async(id,done)=>{
     const usuario = await Usuarios.findById(id)
     done(null,usuario)
 })
+
+passport.use('login', new localStrategy({
+    usernameField:'nombre',
+    passwordField:'password',
+    passReqToCallback:true
+},async(req, nombre, password, done)=>{
+    const usuarioBD = await Usuarios.findOne({nombre})
+    if(!usuarioBD){
+        return done(null,false)
+    }
+    done(null,usuarioNuevo)
+}))

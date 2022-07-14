@@ -5,6 +5,7 @@ import MongoStore from "connect-mongo";
 import path from 'path';
 import { fileURLToPath } from 'url';
 //import'./src/dataBases/database.js'
+//import passport from 'passport';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // import { ioServer } from 'socket.io'
@@ -18,6 +19,7 @@ import loginRouter from "./src/routes/login.js"
 import logoutRouter from "./src/routes/logout.js"
 import registroRouter from "./src/routes/registro.js"
 import 'dotenv/config'
+import passport from 'passport';
 
 //variables del env
 const MONGO_USER = process.env.MONGO_USER;
@@ -53,6 +55,8 @@ app.use('/productos', routesProductos)
 app.use('/registro',registroRouter)
 app.use('/login',loginRouter)
 app.use('/logout',logoutRouter)
+//app.use(passport.initialize())
+//app.use(passport.session())
 app.set('views','./src/views')
 app.set('view engine','ejs')
 
