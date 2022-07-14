@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 //import'./src/dataBases/database.js'
 //import passport from 'passport';
+import './src/passport/local.js'
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // import { ioServer } from 'socket.io'
