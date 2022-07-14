@@ -8,8 +8,9 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    const usuario = usuarios.find(usuario=>usuario.nombre===req.body.nombre)
-    if(usuario){
+    const {nombre, password} = req.body
+    const usuario = usuarios.find(usuario=>usuario.nombre===nombre)
+    if(usuario && usuario.password===password){
         for (const key in req.body){
             req.session[key] = req.body[key]
         }
